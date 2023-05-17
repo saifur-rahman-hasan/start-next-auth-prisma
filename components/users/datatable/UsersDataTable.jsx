@@ -1,19 +1,12 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import classNames from "@/lib/classNames";
 import Link from "next/link";
-
-const people = [
-	{
-		name: 'Lindsay Walton',
-		title: 'Front-end Developer',
-		email: 'lindsay.walton@example.com',
-		role: 'Member',
-	},
-	// More people...
-]
+import Dump from "@/components/core/Dump";
 
 
-export default function UsersDataTable() {
+export default function UsersDataTable({ data }) {
+	const people = data
+
 	const checkbox = useRef()
 	const [checked, setChecked] = useState(false)
 	const [indeterminate, setIndeterminate] = useState(false)
@@ -31,6 +24,10 @@ export default function UsersDataTable() {
 		setChecked(!checked && !indeterminate)
 		setIndeterminate(false)
 	}
+
+	// return (
+	// 	<Dump data={{people}} />
+	// )
 
 	return (
 		<div className="px-4 sm:px-6 lg:px-8">
@@ -133,9 +130,11 @@ export default function UsersDataTable() {
 										<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
 										<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.role}</td>
 										<td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
-											<a href="#" className="text-indigo-600 hover:text-indigo-900">
-												Edit<span className="sr-only">, {person.name}</span>
-											</a>
+											<Link
+												href={`/users/${person.id}`}
+												className="text-indigo-600 hover:text-indigo-900">
+												Access Profile <span className="sr-only">, {person.name}</span>
+											</Link>
 										</td>
 									</tr>
 								))}

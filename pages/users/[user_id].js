@@ -1,18 +1,27 @@
 import DashboardDefaultLayout from "@/components/layouts/dashboard/DashboardDefaultLayout";
-import UsersDataTable from "@/components/users/datatable/UsersDataTable";
+import AccountSettings from "@/components/users/account/AccountSettings";
 import prisma from "@/lib/prisma";
 
-export default function Users({ users }){
+export default function UserProfile({ profileUser }){
 	return (
 		<DashboardDefaultLayout>
-			<UsersDataTable data={users} />
+			<AccountSettings profileUser={profileUser} />
 		</DashboardDefaultLayout>
 	)
 }
 
 export async function getServerSideProps(context){
+	const { req, res } = context
+	const queryUserId = req?.query?.user_id
+	console.log(`req.query`)
+	console.log(req.query)
 
-	const users = await prisma.user.findMany({
+	// if(!queryUserId){
+	// 	throw new Error("Failed")
+	// }
+
+	const user = await prisma.user.findFirstOrThrow({
+		where: { id: queryUserId },
 		select: {
 			id: true,
 			name: true,
@@ -22,7 +31,7 @@ export async function getServerSideProps(context){
 		},
 	});
 
-	const serializedUsers = users.map((user) => ({
+	const serializedUsers = [user].map((user) => ({
 		id: user.id,
 		name: user.name,
 		email: user.email,
@@ -32,7 +41,7 @@ export async function getServerSideProps(context){
 
 	return {
 		props: {
-			users: serializedUsers || [],
+			profileUser: serializedUsers[0] || {},
 		},
 	};
 }
