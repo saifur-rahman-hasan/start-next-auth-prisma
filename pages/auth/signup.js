@@ -4,7 +4,7 @@ import SignupForm from "@/components/auth/SignUpForm";
 
 export default function Signup() {
 	return (
-		<div className={`h-full bg-gray-50`}>
+		<div className={`min-h-screen h-full bg-gray-50`}>
 			<div className="h-full">
 				<SignupForm />
 			</div>

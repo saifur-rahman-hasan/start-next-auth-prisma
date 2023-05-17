@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useRouter} from "next/router";
+import Link from "next/link";
 
 const SignupForm = () => {
     const [name, setName] = useState('')
@@ -181,10 +182,12 @@ const SignupForm = () => {
                 </div>
 
                 <p className="mt-10 text-center text-sm text-gray-500">
-                    Not a member?{' '}
-                    <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                        Start a 14 day free trial
-                    </a>
+                    Already have account?{' '}
+                    <Link
+                        href={`/auth/signin`}
+                        className="font-bold leading-6 text-indigo-600 hover:text-indigo-500">
+                        Sign in to your account
+                    </Link>
                 </p>
             </div>
         </div>
