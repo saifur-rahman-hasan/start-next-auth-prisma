@@ -11,6 +11,7 @@ import {
 	XMarkIcon,
 } from '@heroicons/react/24/outline'
 import Dump from "@/components/core/Dump";
+import UpdatableTextInput from "@/components/users/account/UpdatableFields/UpdatableTextInput";
 
 const navigation = [
 	{ name: 'Home', href: '#' },
@@ -76,28 +77,24 @@ export default function AccountSettings({ profileUser }) {
 							</p>
 
 							<dl className="mt-6 space-y-6 divide-y divide-gray-100 border-t border-gray-200 text-sm leading-6">
+								<UpdatableTextInput
+									label={'Full name'}
+									value={profileUser?.name}
+								/>
+
+								<UpdatableTextInput
+									label={'Email address'}
+									value={profileUser?.email}
+								/>
+
 								<div className="pt-6 sm:flex">
-									<dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">Full name</dt>
+									<dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">Title / Role</dt>
 									<dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-										<div className="text-gray-900">{ profileUser?.name || 'UNDEFINED'}</div>
-										<button type="button" className="font-semibold text-indigo-600 hover:text-indigo-500">
-											Update
-										</button>
-									</dd>
-								</div>
-								<div className="pt-6 sm:flex">
-									<dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">Email address</dt>
-									<dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-										<div className="text-gray-900">{profileUser?.email || 'UNDEFINED'}</div>
-										<button type="button" className="font-semibold text-indigo-600 hover:text-indigo-500">
-											Update
-										</button>
-									</dd>
-								</div>
-								<div className="pt-6 sm:flex">
-									<dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">Title</dt>
-									<dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-										<div className="text-gray-900">Human Resources Manager</div>
+										<div className="text-gray-900">
+											{
+												profileUser.roles.map(role => (role.name))
+											}
+										</div>
 										<button type="button" className="font-semibold text-indigo-600 hover:text-indigo-500">
 											Update
 										</button>

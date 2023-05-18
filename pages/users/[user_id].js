@@ -1,47 +1,34 @@
 import DashboardDefaultLayout from "@/components/layouts/dashboard/DashboardDefaultLayout";
 import AccountSettings from "@/components/users/account/AccountSettings";
 import prisma from "@/lib/prisma";
+import Dump from "@/components/core/Dump";
+import UserProfileEdit from "@/components/users/profile/UserProfileEdit";
 
 export default function UserProfile({ profileUser }){
 	return (
 		<DashboardDefaultLayout>
-			<AccountSettings profileUser={profileUser} />
+			<Dump data={{profileUser}} />
+
+			<div className={`p-10`}>
+				<UserProfileEdit profileUser={profileUser} />
+			</div>
 		</DashboardDefaultLayout>
 	)
 }
 
 export async function getServerSideProps(context){
-	const { req, res } = context
-	const queryUserId = req?.query?.user_id
-	console.log(`req.query`)
-	console.log(req.query)
-
-	// if(!queryUserId){
-	// 	throw new Error("Failed")
-	// }
+	const { user_id } = context?.query
 
 	const user = await prisma.user.findFirstOrThrow({
-		where: { id: queryUserId },
-		select: {
-			id: true,
-			name: true,
-			email: true,
-			image: true,
-			createdAt: true,
-		},
+		where: { id: parseInt(user_id) },
+		include: {
+			roles: true
+		}
 	});
-
-	const serializedUsers = [user].map((user) => ({
-		id: user.id,
-		name: user.name,
-		email: user.email,
-		image: user?.image || 'www.gravatar.com/avatar',
-		createdAt: user.createdAt.toISOString(), // Convert createdAt to a serializable format
-	}));
 
 	return {
 		props: {
-			profileUser: serializedUsers[0] || {},
+			profileUser: JSON.parse(JSON.stringify(user || {})),
 		},
 	};
 }

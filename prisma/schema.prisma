@@ -7,6 +7,26 @@ datasource db {
   url      = "postgresql://postgres:postgres@localhost:54322/postgres"
 }
 
+model UserRole {
+  id        Int     @id @default(autoincrement())
+  user      User?   @relation(fields: [userId], references: [id])
+  userId    Int?
+
+  name          String
+  code_name     String? @unique
+  published     Boolean @default(false)
+}
+
+model UserPermission {
+  id        Int     @id @default(autoincrement())
+  userId    Int?
+  user      User?   @relation(fields: [userId], references: [id])
+
+  name      String
+  code_name String? @unique
+  published Boolean @default(false)
+}
+
 model Post {
   id        Int     @id @default(autoincrement())
   title     String
@@ -57,6 +77,8 @@ model User {
   image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  roles         UserRole[]
+  permission    UserPermission[]
   posts         Post[]
   accounts      Account[]
   sessions      Session[]
