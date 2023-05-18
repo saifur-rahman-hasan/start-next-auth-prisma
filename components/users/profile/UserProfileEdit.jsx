@@ -1,13 +1,10 @@
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import Dump from "@/components/core/Dump";
-import Image from "next/image";
 import ProfileImageSelector from "@/components/users/profile/ProfileImageSelector";
 import FormInputEmail from "@/components/ui/form/FormInputEmail";
 import FormInputName from "@/components/ui/form/FormInputName";
-import FormInputWebsite from "@/components/ui/form/FormInputWebsite";
 import FormInputTextarea from "@/components/ui/form/FormInputTextarea";
 import FormInputPassword from "@/components/ui/form/FormInputPassword";
 import FormInputPasswordWithConfirmation from "@/components/ui/form/FormInputPasswordWithConfirmation";
+import UserConnectedAccounts from "@/components/users/profile/UserConnectedAccounts";
 
 export default function UserProfileEdit({ profileUser }) {
 	return (
@@ -48,15 +45,16 @@ export default function UserProfileEdit({ profileUser }) {
 
 						</div>
 					</div>
-					<div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-						<button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-							Cancel
-						</button>
+					<div className="flex items-center justify-start gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
 						<button
 							type="submit"
 							className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 						>
 							Save
+						</button>
+
+						<button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+							Cancel
 						</button>
 					</div>
 				</form>
@@ -86,34 +84,37 @@ export default function UserProfileEdit({ profileUser }) {
 									name={`password`}
 								/>
 							</div>
-
-							{/*<div className="sm:col-span-4">*/}
-							{/*	<FormInputPassword*/}
-							{/*		label={'New Password'}*/}
-							{/*		name={`new_password`}*/}
-							{/*	/>*/}
-							{/*</div>*/}
-
-							{/*<div className="sm:col-span-4">*/}
-							{/*	<FormInputPassword*/}
-							{/*		label={'Confirm New Password'}*/}
-							{/*		name={`confirm_new_password`}*/}
-							{/*	/>*/}
-							{/*</div>*/}
 						</div>
 					</div>
-					<div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-						<button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-							Cancel
-						</button>
+
+					<div className="flex items-center justify-start gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
 						<button
 							type="submit"
 							className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 						>
 							Save
 						</button>
+
+						<button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+							Cancel
+						</button>
 					</div>
+
 				</form>
+
+			</div>
+
+			<div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
+				<div className="px-4 sm:px-0">
+					<h2 className="text-base font-semibold leading-7 text-gray-900">Connected Accounts</h2>
+					<p className="mt-1 text-sm leading-6 text-gray-600">
+						Connect your accounts from various platforms to enhance your experience.
+					</p>
+				</div>
+
+				<div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 p-8 py-4">
+					<UserConnectedAccounts />
+				</div>
 
 			</div>
 
@@ -250,17 +251,20 @@ export default function UserProfileEdit({ profileUser }) {
 							</div>
 						</div>
 					</div>
-					<div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-						<button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-							Cancel
-						</button>
+
+					<div className="flex items-center justify-start gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
 						<button
 							type="submit"
 							className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 						>
 							Save
 						</button>
+
+						<button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+							Cancel
+						</button>
 					</div>
+
 				</form>
 			</div>
 
@@ -371,17 +375,20 @@ export default function UserProfileEdit({ profileUser }) {
 							</fieldset>
 						</div>
 					</div>
-					<div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-						<button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-							Cancel
-						</button>
+
+					<div className="flex items-center justify-start gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
 						<button
 							type="submit"
 							className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 						>
 							Save
 						</button>
+
+						<button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+							Cancel
+						</button>
 					</div>
+
 				</form>
 			</div>
 		</div>

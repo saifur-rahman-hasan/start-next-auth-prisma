@@ -5,7 +5,9 @@ import prisma from "@/lib/prisma";
 export default function Users({ users }){
 	return (
 		<DashboardDefaultLayout>
-			<UsersDataTable data={users} />
+			<div className={`p-8`}>
+				<UsersDataTable data={users} />
+			</div>
 		</DashboardDefaultLayout>
 	)
 }

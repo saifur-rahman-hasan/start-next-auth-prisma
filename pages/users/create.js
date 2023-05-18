@@ -4,7 +4,9 @@ import UserProfileCreateForm from "@/components/users/forms/UserProfileCreateFor
 export default function UserCreate(){
 	return (
 		<DashboardDefaultLayout>
-			<UserProfileCreateForm />
+			<div className={`p-8`}>
+				<UserProfileCreateForm />
+			</div>
 		</DashboardDefaultLayout>
 	)
 }

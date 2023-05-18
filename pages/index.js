@@ -10,13 +10,15 @@ export default function Home() {
     return (
         <DashboardDefaultLayout>
 
-            <div className={`my-4`}>
-                <LoginBtn />
-            </div>
+            <div className={`p-8`}>
+                <div className={`my-4`}>
+                    <LoginBtn />
+                </div>
 
 
-            <div className={`my-4`}>
-                <AccessToken />
+                <div className={`my-4`}>
+                    <AccessToken />
+                </div>
             </div>
 
         </DashboardDefaultLayout>
